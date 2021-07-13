@@ -1,7 +1,6 @@
 ﻿using Keras;
 using Keras.Layers;
 using Keras.Models;
-using Keras.PreProcessing.Image;
 using System;
 using System.Collections.Generic;
 using K = Keras.Backend;

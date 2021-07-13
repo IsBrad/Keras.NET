@@ -34,10 +34,7 @@ namespace Keras.Models
         /// <param name="layers">The layers.</param>
         public Sequential(BaseLayer[] layers) : this()
         {
-            foreach (var item in layers)
-            {
-                Add(item.PyInstance);
-            }
+            foreach (var item in layers) Add(item.PyInstance);
         }
 
         /// <summary>

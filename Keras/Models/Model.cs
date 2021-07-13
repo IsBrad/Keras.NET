@@ -1,6 +1,6 @@
 ﻿namespace Keras.Models
 {
-    using global::Keras.Layers;
+    using Layers;
     using Python.Runtime;
     using System.Collections.Generic;
 
@@ -16,7 +16,6 @@
         /// </summary>
         internal Model()
         {
-
         }
 
         /// <summary>
@@ -36,18 +35,12 @@
         /// <param name="outputs">The outputs layers.</param>
         public Model(BaseLayer[] inputs, BaseLayer[] outputs)
         {
-            List<PyObject> inputList = new List<PyObject>();
-            List<PyObject> outputList = new List<PyObject>();
+            var inputList = new List<PyObject>();
+            var outputList = new List<PyObject>();
 
-            foreach (var item in inputs)
-            {
-                inputList.Add(item.PyInstance);
-            }
+            foreach (var item in inputs) inputList.Add(item.PyInstance);
 
-            foreach (var item in outputs)
-            {
-                outputList.Add(item.PyInstance);
-            }
+            foreach (var item in outputs) outputList.Add(item.PyInstance);
 
             PyInstance = Instance.keras.models.Model(inputList, outputList);
         }
@@ -59,11 +52,8 @@
         /// <param name="outputs">The outputs layers.</param>
         public Model(params BaseLayer[] inputs)
         {
-            List<PyObject> inputList = new List<PyObject>();
-            foreach (var item in inputs)
-            {
-                inputList.Add(item.PyInstance);
-            }
+            var inputList = new List<PyObject>();
+            foreach (var item in inputs) inputList.Add(item.PyInstance);
 
 
             PyInstance = Instance.keras.models.Model(inputList);

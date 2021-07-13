@@ -1,7 +1,5 @@
-﻿using Keras.Callbacks;
-using Keras.Layers;
+﻿using Keras.Layers;
 using Keras.Models;
-using Keras.Optimizers;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Interaction;
@@ -10,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Keras;
+using Keras.Optimizers;
 
 namespace MusicGeneration
 {

@@ -22,62 +22,62 @@ namespace Keras
         private static bool alreadyDisabled = false;
 
         private static Lazy<Keras> _instance = new Lazy<Keras>(() =>
-        {
-            var instance = new Keras();
-            instance.keras = InstallAndImport(Setup.KerasModule);
+            {
+                var instance = new Keras();
+                instance.keras = InstallAndImport(Setup.KerasModule);
 
-            try
-            {
-                instance.tensorflow = InstallAndImport("tensorflow");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Warning! tensorflow is not installed. Required to load models");
-            }
+                try
+                {
+                    instance.tensorflow = InstallAndImport("tensorflow");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Warning! tensorflow is not installed. Required to load models");
+                }
 
-            try
-            {
-                instance.keras2onnx = InstallAndImport("onnxmltools");
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Warning! onnxmltools is not installed");
-            }
+                try
+                {
+                    instance.keras2onnx = InstallAndImport("onnxmltools");
+                }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine("Warning! onnxmltools is not installed");
+                }
 
-            try
-            {
-                instance.tfjs = InstallAndImport("tensorflowjs");
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Warning! tensorflowjs is not installed");
-            }
+                try
+                {
+                    instance.tfjs = InstallAndImport("tensorflowjs");
+                }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine("Warning! tensorflowjs is not installed");
+                }
 
-            return instance;
-        }
+                return instance;
+            }
         );
 
         private static PyObject InstallAndImport(string module)
         {
-            if(!PythonEngine.IsInitialized)
+            if (!PythonEngine.IsInitialized)
                 PythonEngine.Initialize();
 
-            sys = Py.Import("sys");
-            if(DisablePySysConsoleLog && !alreadyDisabled)
+            sys = Import("sys");
+            if (DisablePySysConsoleLog && !alreadyDisabled)
             {
-                string codeToRedirectOutput =
-                "import sys\n" +
-                "from io import StringIO\n" +
-                "sys.stdout = mystdout = StringIO()\n" +
-                "sys.stdout.flush()\n" +
-                "sys.stderr = mystderr = StringIO()\n" +
-                "sys.stderr.flush()\n";
+                var codeToRedirectOutput =
+                    "import sys\n" +
+                    "from io import StringIO\n" +
+                    "sys.stdout = mystdout = StringIO()\n" +
+                    "sys.stdout.flush()\n" +
+                    "sys.stderr = mystderr = StringIO()\n" +
+                    "sys.stderr.flush()\n";
 
                 PythonEngine.RunSimpleString(codeToRedirectOutput);
                 alreadyDisabled = true;
             }
 
-            var mod = Py.Import(module);
+            var mod = Import(module);
             return mod;
         }
 
@@ -92,7 +92,9 @@ namespace Keras
 
         private bool IsInitialized => keras != null;
 
-        internal Keras() { }
+        internal Keras()
+        {
+        }
 
         public void Dispose()
         {
@@ -127,17 +129,16 @@ namespace Keras
                 case StringOrInstance o: return o.PyObject;
                 case KerasFunction o: return o.PyObject;
                 case Base o: return o.PyInstance;
-                default: throw new NotImplementedException($"Type is not yet supported: { obj.GetType().Name}. Add it to 'ToPythonConversions'");
+                default:
+                    throw new NotImplementedException(
+                        $"Type is not yet supported: {obj.GetType().Name}. Add it to 'ToPythonConversions'");
             }
         }
 
         protected static PyTuple ToTuple(Array input)
         {
             var array = new PyObject[input.Length];
-            for (int i = 0; i < input.Length; i++)
-            {
-                array[i] = ToPython(input.GetValue(i));
-            }
+            for (var i = 0; i < input.Length; i++) array[i] = ToPython(input.GetValue(i));
 
             return new PyTuple(array);
         }
@@ -172,22 +173,16 @@ namespace Keras
         protected static PyList ToList(Array input)
         {
             var array = new PyObject[input.Length];
-            for (int i = 0; i < input.Length; i++)
-            {
-                array[i] = ToPython(input.GetValue(i));
-            }
+            for (var i = 0; i < input.Length; i++) array[i] = ToPython(input.GetValue(i));
 
             return new PyList(array);
         }
 
         protected static PyDict ToDict(Dictionary<int, float> input)
         {
-            PyDict dict = new PyDict();
+            var dict = new PyDict();
 
-            foreach (var item in input)
-            {
-                dict[item.Key.ToPython()] = item.Value.ToPython();
-            }
+            foreach (var item in input) dict[item.Key.ToPython()] = item.Value.ToPython();
 
             return dict;
         }

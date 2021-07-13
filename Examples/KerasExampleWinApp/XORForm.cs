@@ -1,6 +1,5 @@
 ﻿using Keras;
 using Keras.Layers;
-using Keras.Optimizers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +13,8 @@ using Numpy;
 using K = Keras.Backend;
 using Keras.Utils;
 using Keras.Models;
-using Keras.Datasets;
 using System.IO;
+using Keras.Optimizers;
 
 namespace KerasExampleWinApp
 {

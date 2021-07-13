@@ -30,6 +30,10 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Py3.6_WIN|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
@@ -38,6 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Initializers\" />
+    <Folder Include="Tools\" />
     <Folder Include="Properties\"></Folder>
   </ItemGroup>
 

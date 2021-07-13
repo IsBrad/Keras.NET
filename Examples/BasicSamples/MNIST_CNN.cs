@@ -1,5 +1,4 @@
-﻿using Keras.Datasets;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Numpy;
@@ -7,8 +6,8 @@ using K = Keras.Backend;
 using Keras;
 using Keras.Models;
 using Keras.Layers;
-using Keras.Utils;
 using Keras.Optimizers;
+using Keras.Utils;
 
 namespace BasicSamples
 {

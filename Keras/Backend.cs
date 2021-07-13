@@ -16,7 +16,7 @@ namespace Keras
     /// <seealso cref="Keras.Base" />
     public class Backend : Base
     {
-        static dynamic caller = Instance.keras.backend;
+        private static dynamic caller = Instance.keras.backend;
 
         /// <summary>
         /// Publicly accessible method for determining the current backend.
@@ -33,7 +33,7 @@ namespace Keras
         /// <returns></returns>
         public static float Epsilon()
         {
-            return (float)caller.epsilon();
+            return (float) caller.epsilon();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Keras
         /// <returns>The same Numpy array, cast to its new type.</returns>
         public NDarray CastToFloatX(NDarray x)
         {
-            return new NDarray((PyObject)caller.cast_to_floatx(x: x));
+            return new NDarray((PyObject) caller.cast_to_floatx(x: x));
         }
 
         /// <summary>
@@ -88,7 +88,6 @@ namespace Keras
         /// <returns></returns>
         public static void DisableEager()
         {
-
             Instance.tensorflow.compat.v1.disable_eager_execution();
         }
 
@@ -136,7 +135,7 @@ namespace Keras
         /// </returns>
         public static bool IsSparse(NDarray tensor)
         {
-            return (bool)caller.is_sparse(tensor: tensor);
+            return (bool) caller.is_sparse(tensor: tensor);
         }
 
         /// <summary>
@@ -151,7 +150,7 @@ namespace Keras
 
         public static PyObject Cast(PyObject x, string dtype = "float32")
         {
-            return (PyObject)caller.cast(x: x, dtype: dtype);
+            return (PyObject) caller.cast(x: x, dtype: dtype);
         }
     }
 }

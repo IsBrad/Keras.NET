@@ -10,7 +10,7 @@ namespace Keras.Helper
     {
         public static T[] TupleToList<T>(PyObject obj)
         {
-            List<T> result = new List<T>();
+            var result = new List<T>();
             GetTTupleList(new PyIter(obj), ref result);
 
             return result.ToArray();
@@ -18,7 +18,7 @@ namespace Keras.Helper
 
         private static void GetTTupleList<T>(PyObject obj, ref List<T> result)
         {
-            PyIter iter = new PyIter(obj);
+            var iter = new PyIter(obj);
 
             while (iter.MoveNext())
             {
@@ -51,8 +51,8 @@ namespace Keras.Helper
 
         public static NDarray[] TupleToList(PyObject obj)
         {
-            PyIter iter = new PyIter(obj);
-            List<NDarray> result = new List<NDarray>();
+            var iter = new PyIter(obj);
+            var result = new List<NDarray>();
             GetNdListFromTuple(new PyIter(obj), ref result);
 
             return result.ToArray();
@@ -60,8 +60,8 @@ namespace Keras.Helper
 
         private static void GetNdListFromTuple(PyObject obj, ref List<NDarray> result)
         {
-            PyIter iter = new PyIter(obj);
-            
+            var iter = new PyIter(obj);
+
             while (iter.MoveNext())
             {
                 var r = iter.Current.ToPython();

@@ -1,9 +1,8 @@
 using System.IO;
-using Keras.Initializer;
 using Keras.Layers;
+using Keras.Layers.Activation;
 using Keras.Models;
 using Keras.Optimizers;
-using Keras.Regularizers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NuGet.Frameworks;
@@ -58,6 +57,28 @@ namespace Keras.UnitTest
             var obj = act.ToPython();
 
             var act1 = Activations.Softmax(np.array<float>(1, 2, 3, 4).reshape(2, 2));
+        }
+
+        [TestMethod]
+        public void ConcatenateTest()
+        {
+            const int depth = 260;
+            const int height = 200;
+            const int width = 200;
+            const int channels = 1;
+
+            var inputShape = new Shape(depth, height, width, channels);
+
+            var xInput = new Input(shape: inputShape, name: "input_layer1");
+            var yInput = new Input(shape: inputShape, name: "input_layer2");
+
+            var concat = new Concatenate(xInput, yInput);
+            var concatAxis = new Concatenate(-1, xInput, yInput);
+            var concatAlt = new Concatenate(1, xInput, yInput);
+
+            var obj = concat.ToPython();
+            var objAxis = concatAxis.ToPython();
+            var objAlt = concatAlt.ToPython();
         }
     }
 }

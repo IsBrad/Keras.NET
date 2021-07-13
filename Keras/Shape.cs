@@ -22,7 +22,7 @@ namespace Keras
         /// <param name="shape">The shape.</param>
         public Shape(params int[] shape)
         {
-            this.Dimensions = shape;
+            Dimensions = shape;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Keras
         {
             if (obj.GetType() != typeof(Shape))
                 return false;
-            return Enumerable.SequenceEqual(Dimensions, ((Shape)obj).Dimensions);
+            return Enumerable.SequenceEqual(Dimensions, ((Shape) obj).Dimensions);
         }
 
         /// <summary>

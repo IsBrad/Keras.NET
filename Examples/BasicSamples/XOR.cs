@@ -1,12 +1,12 @@
 ﻿using Keras;
 using Keras.Layers;
 using Keras.Models;
-using Keras.Optimizers;
 using Numpy;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Keras.Optimizers;
 
 namespace BasicSamples
 {

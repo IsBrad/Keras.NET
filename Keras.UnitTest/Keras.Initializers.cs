@@ -1,4 +1,3 @@
-using Keras.Initializer;
 using Keras.Layers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

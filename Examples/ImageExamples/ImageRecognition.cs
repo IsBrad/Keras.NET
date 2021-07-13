@@ -1,10 +1,9 @@
 ﻿using Keras.Applications;
-using Keras.PreProcessing.Image;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Keras.PreProcessing;
 using Numpy;
-using Keras.Applications.ResNet;
 
 namespace ImageExamples
 {

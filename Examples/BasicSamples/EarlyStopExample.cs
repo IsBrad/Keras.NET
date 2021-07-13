@@ -1,8 +1,6 @@
 ﻿using Keras;
-using Keras.Callbacks;
 using Keras.Layers;
 using Keras.Models;
-using Keras.Optimizers;
 using Numpy;
 using System;
 using System.Collections.Generic;

@@ -1,11 +1,12 @@
-﻿using Keras.Datasets;
-using System;
+﻿using System;
 using Numpy;
 using Keras.Models;
 using Keras.Layers;
-using Keras.PreProcessing.sequence;
-using Keras.PreProcessing.Text;
 using System.Linq;
+using Keras;
+using Keras.Datasets;
+using Keras.PreProcessing;
+
 namespace TextExamples
 {
     public class SentimentClassification

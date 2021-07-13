@@ -19,9 +19,8 @@ namespace Keras.Applications
         /// <summary>
         /// Initializes a new instance of the <see cref="Xception"/> class.
         /// </summary>
-        private Xception() : base((PyObject)Instance.keras.applications.xception)
+        private Xception() : base((PyObject) Instance.keras.applications.xception)
         {
-
         }
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace Keras.Applications
         /// max means that global max pooling will be applied.</param>
         /// <param name="classes">optional number of classes to classify images into, only to be specified if include_top is True, and if no weights argument is specified.</param>
         public Xception(bool include_top = true, string weights = "imagenet", NDarray input_tensor = null,
-                                    Shape input_shape = null, string pooling = "None", int classes = 1000)
+            Shape input_shape = null, string pooling = "None", int classes = 1000)
             : this()
         {
             Parameters["include_top"] = include_top;

@@ -1,7 +1,5 @@
 ﻿using Keras;
-using Keras.Applications.VGG;
 using Keras.Models;
-using Keras.PreProcessing.Image;
 using System;
 
 namespace BasicSamples
